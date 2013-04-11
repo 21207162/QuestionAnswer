@@ -2,7 +2,9 @@ package questionanswer
 
 class QuestionService {
 
-    def serviceMethod() {
-
-    }
+	def createQuestion (){
+	}
+	
+	def deleteQuestion (Question q){
+	}
 }

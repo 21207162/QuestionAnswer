@@ -2,7 +2,15 @@ package questionanswer
 
 class SurveyService {
 
-    def serviceMethod() {
-
+    def submitSurvey() {
     }
+	
+	def closeSurvey(){
+	}
+	
+	def CalculateStatistics(){
+	}
+	
+	def voteForSurveyWithAnswer(Survey s, Answer a){
+	}
 }

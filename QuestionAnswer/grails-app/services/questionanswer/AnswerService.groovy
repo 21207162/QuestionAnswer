@@ -2,7 +2,12 @@ package questionanswer
 
 class AnswerService {
 
-    def serviceMethod() {
-
+    def createAnswer() {
     }
+	
+	def deleteAnswer(Answer a){
+	}
+	
+	def isRight(){
+	}
 }
