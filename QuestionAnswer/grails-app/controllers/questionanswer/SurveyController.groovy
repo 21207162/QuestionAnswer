@@ -1,19 +1,44 @@
 package questionanswer
 
+import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 import org.springframework.dao.DataIntegrityViolationException
 
 class SurveyController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	
+	def logIn(){
+		def u = User.findByNameAndPassword(params.name, params.password)
+		if (u){
+			def hisProfile = u.getProfile()
+			if (hisProfile.status.equals("Teacher")){
+				redirect(action: "list")
+			}else{
+				 redirect(action: "student_view")
+			}	
+		}else{
+			redirect(action: "index")
+		}
+	}
 
     def index() {
+<<<<<<< HEAD
         redirect(action: "list", params: params)
+=======
+		//redirect(action: "list", params:params)
+        render(view: "authentification")
+>>>>>>> dev_v
     }
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [surveyInstanceList: Survey.list(params), surveyInstanceTotal: Survey.count()]
     }
+	
+	def student_view(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		[surveyInstanceList: Survey.list(params), surveyInstanceTotal: Survey.count()]
+	}
 
     def create() {
         [surveyInstance: new Survey(params)]
