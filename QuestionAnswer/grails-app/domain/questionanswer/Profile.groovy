@@ -1,11 +1,11 @@
 package questionanswer
 
 class Profile {
-	/*enum Status {
+	enum Status {
 		STUDENT, TEACHER
-	  }*/
+	  }
 	
-	String status
+	Status status
 	
 
     static constraints = {

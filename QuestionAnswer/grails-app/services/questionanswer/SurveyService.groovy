@@ -12,5 +12,6 @@ class SurveyService {
 	}
 	
 	def voteForSurveyWithAnswer(Survey s, Answer a){
+		
 	}
 }
