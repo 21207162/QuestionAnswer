@@ -41,6 +41,17 @@ class QuestionController {
 
         [questionInstance: questionInstance]
     }
+	
+	def show_q_student(Long id) {
+		def questionInstance = Question.get(id)
+		if (!questionInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
+			redirect(action: "list")
+			return
+		}
+
+		[questionInstance: questionInstance]
+	}
 
     def edit(Long id) {
         def questionInstance = Question.get(id)

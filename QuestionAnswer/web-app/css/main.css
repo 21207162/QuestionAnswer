@@ -594,3 +594,24 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+
+#container{
+	margin-left:20px;
+}
+
+.login label
+{
+    display: block;
+    width: 150px;
+    float: left;
+}
+
+
+.clear {
+	clear: both;
+}
+
+.space{
+    clear: both;
+    padding-top: 20px;
+}

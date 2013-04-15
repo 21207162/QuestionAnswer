@@ -12,7 +12,6 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-survey" class="content scaffold-list" role="main">
@@ -23,25 +22,19 @@
 			<table>
 				<thead>
 					<tr>
-					<th><g:message code="survey.question.label" default="Question" /></th>
-						<g:sortableColumn property="open" title="${message(code: 'survey.open.label', default: 'Open')}" />
-					
+						<th><g:message code="survey.question.label" default="Question" /></th>
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${surveyInstanceList}" status="i" var="surveyInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${surveyInstance.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link></td>
-						<td>${fieldValue(bean: surveyInstance, field: "open")}</td>
-					
-					</tr>
+					<g:if test="${fieldValue(bean: surveyInstance, field: "open") == 'true'}">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+							<td><g:link controller="question" action="show_q_student" id="${surveyInstance.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link></td>
+						</tr>
+					</g:if>
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
-				<g:paginate total="${surveyInstanceTotal}" />
-			</div>
 		</div>
 	</body>
 </html>

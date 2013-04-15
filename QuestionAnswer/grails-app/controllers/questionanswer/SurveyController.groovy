@@ -13,7 +13,9 @@ class SurveyController {
 			def hisProfile = u.getProfile()
 			if (hisProfile.status.equals("Teacher")){
 				redirect(action: "list")
-			}
+			}else{
+				 redirect(action: "student_view")
+			}	
 		}else{
 			redirect(action: "index")
 		}
@@ -28,6 +30,11 @@ class SurveyController {
         params.max = Math.min(max ?: 10, 100)
         [surveyInstanceList: Survey.list(params), surveyInstanceTotal: Survey.count()]
     }
+	
+	def student_view(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		[surveyInstanceList: Survey.list(params), surveyInstanceTotal: Survey.count()]
+	}
 
     def create() {
         [surveyInstance: new Survey(params)]
