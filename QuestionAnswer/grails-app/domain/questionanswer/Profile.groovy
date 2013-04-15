@@ -1,12 +1,12 @@
 package questionanswer
 
 class Profile {
-	enum Status {
-		STUDENT, TEACHER
-	  }
 	
-	Status status
-	
+	/*enum StatusEnum{
+		TEACHER("teacher"), STUDENT("student")
+	}*/
+
+	String status
 
     static constraints = {
 		status(blank:false)

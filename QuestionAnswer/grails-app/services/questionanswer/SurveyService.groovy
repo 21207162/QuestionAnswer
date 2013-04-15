@@ -2,13 +2,16 @@ package questionanswer
 
 class SurveyService {
 
-    def submitSurvey() {
+    def submitSurvey(Survey s) {
+		s.open = true
     }
 	
-	def closeSurvey(){
+	def closeSurvey(Survey s){
+		s.open = false
 	}
 	
-	def CalculateStatistics(){
+	def CalculateStatistics(Survey s){
+		
 	}
 	
 	def voteForSurveyWithAnswer(Survey s, Answer a){

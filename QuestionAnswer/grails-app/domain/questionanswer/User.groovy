@@ -3,6 +3,7 @@ package questionanswer
 class User {
 	String forename
 	String name
+	String password
 	Profile profile
 
 	
@@ -13,6 +14,7 @@ class User {
     static constraints = {
 		forename(blank:false)
 		name(blank:false)
+		password(blank:false) 
 		profile(blank:false)
     }
 }

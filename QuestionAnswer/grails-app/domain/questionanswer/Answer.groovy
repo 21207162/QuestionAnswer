@@ -1,7 +1,7 @@
 package questionanswer
 
 class Answer {
-	Question question
+	String answer
 	Boolean right
 	int counter
 

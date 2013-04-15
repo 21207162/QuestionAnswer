@@ -7,6 +7,6 @@
 		<g:message code="profile.status.label" default="Status" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="status" required="" value="${profileInstance?.status}"/>
+	
 </div>
 
