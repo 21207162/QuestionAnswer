@@ -3,8 +3,7 @@ package questionanswer
 import org.springframework.dao.DataIntegrityViolationException
 
 class AnswerController {
-	
-	AnswerService answerService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -17,7 +16,7 @@ class AnswerController {
     }
 
     def create() {
-       answerService.createAnswer(params)
+        [answerInstance: new Answer(params)]
     }
 
     def save() {

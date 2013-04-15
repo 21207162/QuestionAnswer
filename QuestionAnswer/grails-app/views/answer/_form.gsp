@@ -2,12 +2,12 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: answerInstance, field: 'counter', 'error')} required">
-	<label for="counter">
-		<g:message code="answer.counter.label" default="Counter" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: answerInstance, field: 'answer', 'error')} ">
+	<label for="answer">
+		<g:message code="answer.answer.label" default="Answer" />
+		
 	</label>
-	<g:field name="counter" type="number" value="${answerInstance.counter}" required=""/>
+	<g:textField name="answer" value="${answerInstance?.answer}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: answerInstance, field: 'question', 'error')} required">

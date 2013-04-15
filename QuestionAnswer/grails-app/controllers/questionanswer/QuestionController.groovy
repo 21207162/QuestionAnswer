@@ -5,7 +5,6 @@ import org.springframework.dao.DataIntegrityViolationException
 class QuestionController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-	QuestionService questionService
 
     def index() {
         redirect(action: "list", params: params)
@@ -17,7 +16,7 @@ class QuestionController {
     }
 
     def create() {
-        questionService.createQuestion(params)
+        [questionInstance: new Question(params)]
     }
 
     def save() {
@@ -82,7 +81,22 @@ class QuestionController {
         redirect(action: "show", id: questionInstance.id)
     }
 
-    def delete() {
-       questionService.deleteQuestion(q.getId())
+    def delete(Long id) {
+        def questionInstance = Question.get(id)
+        if (!questionInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
+            redirect(action: "list")
+            return
+        }
+
+        try {
+            questionInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'question.label', default: 'Question'), id])
+            redirect(action: "list")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'question.label', default: 'Question'), id])
+            redirect(action: "show", id: id)
+        }
     }
 }

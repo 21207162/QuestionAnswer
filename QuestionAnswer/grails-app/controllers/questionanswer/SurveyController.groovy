@@ -7,8 +7,7 @@ class SurveyController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-		redirect(action: "list", params:params)
-        //render(view: "authentification")
+        redirect(action: "list", params: params)
     }
 
     def list(Integer max) {

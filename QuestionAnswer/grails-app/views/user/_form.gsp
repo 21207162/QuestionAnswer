@@ -18,6 +18,14 @@
 	<g:textField name="name" required="" value="${userInstance?.name}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'password', 'error')} ">
+	<label for="password">
+		<g:message code="user.password.label" default="Password" />
+		
+	</label>
+	<g:textField name="password" value="${userInstance?.password}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'profile', 'error')} required">
 	<label for="profile">
 		<g:message code="user.profile.label" default="Profile" />

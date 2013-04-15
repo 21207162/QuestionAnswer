@@ -3,8 +3,7 @@ package questionanswer
 import org.springframework.dao.DataIntegrityViolationException
 
 class ProfileController {
-def scaffold = true
-	/*
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -99,5 +98,5 @@ def scaffold = true
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'profile.label', default: 'Profile'), id])
             redirect(action: "show", id: id)
         }
-    }*/
+    }
 }

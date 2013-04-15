@@ -23,11 +23,11 @@
 			</g:if>
 			<ol class="property-list answer">
 			
-				<g:if test="${answerInstance?.counter}">
+				<g:if test="${answerInstance?.answer}">
 				<li class="fieldcontain">
-					<span id="counter-label" class="property-label"><g:message code="answer.counter.label" default="Counter" /></span>
+					<span id="answer-label" class="property-label"><g:message code="answer.answer.label" default="Answer" /></span>
 					
-						<span class="property-value" aria-labelledby="counter-label"><g:fieldValue bean="${answerInstance}" field="counter"/></span>
+						<span class="property-value" aria-labelledby="answer-label"><g:fieldValue bean="${answerInstance}" field="answer"/></span>
 					
 				</li>
 				</g:if>

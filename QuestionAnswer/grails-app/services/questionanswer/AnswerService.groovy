@@ -8,7 +8,4 @@ class AnswerService {
 	
 	def deleteAnswer(Answer a){
 	}
-	
-	def isRight(){
-	}
 }
