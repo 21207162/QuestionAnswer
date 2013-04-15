@@ -3,7 +3,7 @@ package questionanswer
 class Answer {
 	String answer
 	Boolean right
-	int counter
+	static int counter=0
 
     static constraints = {
     }

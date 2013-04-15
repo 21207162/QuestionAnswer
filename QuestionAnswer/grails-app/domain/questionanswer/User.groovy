@@ -14,7 +14,7 @@ class User {
     static constraints = {
 		forename(blank:false)
 		name(blank:false)
-		password(blank:false) 
+		password(blank:false, nullable:true) 
 		profile(blank:false)
     }
 }

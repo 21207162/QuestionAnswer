@@ -1,8 +1,10 @@
 package questionanswer
 
-class Question {
+import java.util.List;
 
+class Question {
 	String title
+	static hasMany=[answers:Answer]
 	User author
 	
 	String toString() {
