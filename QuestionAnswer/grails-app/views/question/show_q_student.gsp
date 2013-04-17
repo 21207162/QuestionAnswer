@@ -12,8 +12,6 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-question" class="content scaffold-show" role="main">
@@ -38,6 +36,23 @@
 					
 						<span class="property-value" aria-labelledby="author-label"><g:link controller="user" action="show" id="${questionInstance?.author?.id}">${questionInstance?.author?.encodeAsHTML()}</g:link></span>
 					
+				</li>
+				</g:if>
+				
+				<g:if test="${questionInstance?.answers}">
+				<li class="fieldcontain">
+					<span id="answers-label" class="property-label"><g:message code="question.answers.label" default="Answers" /></span>
+					
+						<g:each in="${questionInstance.answers}" var="a">
+						<span class="property-value" aria-labelledby="answers-label"></span><br/>
+							<div class="property-div-value">${a?.encodeAsHTML()}</div>
+							<div class="property-div-form">
+								<g:form controller="Survey" action="vote" method="post"  params="[s:params.surv, survey: survey, answer: a, qid: questionid]">
+									<g:submitButton name="vote" class="vote" value="${message(code: 'Vote for this answer', default: 'Vote for this answer')}" />
+								</g:form>
+							</div>
+						<div class="property-div-stop"></div>
+						</g:each>					
 				</li>
 				</g:if>
 			

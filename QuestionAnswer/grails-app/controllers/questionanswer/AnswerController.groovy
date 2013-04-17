@@ -6,6 +6,8 @@ class AnswerController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+	AnswerService answerService
+	
     def index() {
         redirect(action: "list", params: params)
     }
@@ -16,7 +18,7 @@ class AnswerController {
     }
 
     def create() {
-        [answerInstance: new Answer(params)]
+		[answerInstance: new Answer(params)]
     }
 
     def save() {

@@ -239,6 +239,28 @@ fieldset,
 	margin-left: 27%;
 }
 
+.property-div-value {
+	margin-left: 27%;
+	float:left;
+	padding-top:4px;
+}
+
+.property-div-form {
+	margin-left: 2%;
+	float:left;
+}
+
+.property-div-stop {
+	clear: both
+}
+
+.vote {
+	background-color: buttonface;
+	border: 2px outset buttonface;
+	font-size: 0.9em;
+	padding: 0.2em 0.4em;
+}
+
 label {
 	cursor: pointer;
 	display: inline-block;

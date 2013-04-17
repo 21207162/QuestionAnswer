@@ -13,6 +13,7 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="create" controller="Question" action="create"><g:message code="default.new.label" args="['Question']" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-survey" class="content scaffold-list" role="main">
@@ -23,7 +24,7 @@
 			<table>
 				<thead>
 					<tr>
-					<th><g:message code="survey.question.label" default="Question" /></th>
+					<th><g:message code="survey.question.label" default="Surveys" /></th>
 						<g:sortableColumn property="open" title="${message(code: 'survey.open.label', default: 'Open')}" />
 					
 					</tr>

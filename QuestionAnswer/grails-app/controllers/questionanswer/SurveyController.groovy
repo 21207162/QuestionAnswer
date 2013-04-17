@@ -7,6 +7,8 @@ class SurveyController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	
+	SurveyService surveyService
+	
 	def logIn(){
 		def u = User.findByNameAndPassword(params.name, params.password)
 		if (u){
@@ -22,13 +24,21 @@ class SurveyController {
 	}
 
     def index() {
-<<<<<<< HEAD
-        redirect(action: "list", params: params)
-=======
 		//redirect(action: "list", params:params)
         render(view: "authentification")
->>>>>>> dev_v
     }
+	
+	def vote() {
+		Survey s = Survey.get(params.survey)
+		if(s==null) {
+			String tid = params.s.find(/[1-9]+/)
+			int sid = Integer.parseInt(tid)
+			s =  Survey.get(sid)
+		}
+		Answer a = Answer.findByAnswer(params.answer)
+		surveyService.voteForSurveyWithAnswer(s,a)
+		redirect(action: "show_q_student", controller: "Question", id: params.qid, params: [surv: s])
+	}
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -50,7 +60,8 @@ class SurveyController {
             render(view: "create", model: [surveyInstance: surveyInstance])
             return
         }
-
+		def question = Question.get( params.question.id)
+		surveyService.addAnswersInSurveyFromQuestion(surveyInstance,question)
         flash.message = message(code: 'default.created.message', args: [message(code: 'survey.label', default: 'Survey'), surveyInstance.id])
         redirect(action: "show", id: surveyInstance.id)
     }

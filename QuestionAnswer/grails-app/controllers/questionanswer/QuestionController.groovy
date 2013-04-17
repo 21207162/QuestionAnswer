@@ -49,7 +49,7 @@ class QuestionController {
 			return
 		}
 
-		[questionInstance: questionInstance]
+		[questionInstance: questionInstance, survey: params.survey, questionid: id]
 	}
 
     def edit(Long id) {

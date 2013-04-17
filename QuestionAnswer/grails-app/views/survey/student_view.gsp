@@ -22,14 +22,14 @@
 			<table>
 				<thead>
 					<tr>
-						<th><g:message code="survey.question.label" default="Question" /></th>
+						<th><g:message code="survey.question.label" default="Available surveys" /></th>
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${surveyInstanceList}" status="i" var="surveyInstance">
 					<g:if test="${fieldValue(bean: surveyInstance, field: "open") == 'true'}">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-							<td><g:link controller="question" action="show_q_student" id="${surveyInstance.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link></td>
+							<td><g:link controller="question" action="show_q_student" params="[survey: surveyInstance.id]" id="${surveyInstance.question.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link></td>
 						</tr>
 					</g:if>
 				</g:each>

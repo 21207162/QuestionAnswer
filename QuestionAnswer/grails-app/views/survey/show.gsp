@@ -13,24 +13,14 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-survey" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<h1>Survey Details (<g:if test="${ surveyInstance.open }"> Opened </g:if><g:else> Closed </g:else>)</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list survey">
-			
-				<g:if test="${surveyInstance?.open}">
-				<li class="fieldcontain">
-					<span id="open-label" class="property-label"><g:message code="survey.open.label" default="Open" /></span>
-					
-						<span class="property-value" aria-labelledby="open-label"><g:formatBoolean boolean="${surveyInstance?.open}" /></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${surveyInstance?.question}">
 				<li class="fieldcontain">
@@ -47,6 +37,7 @@
 					<g:hiddenField name="id" value="${surveyInstance?.id}" />
 					<g:link class="edit" action="edit" id="${surveyInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>
