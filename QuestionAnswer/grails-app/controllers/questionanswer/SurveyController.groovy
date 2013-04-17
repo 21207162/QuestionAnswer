@@ -14,11 +14,14 @@ class SurveyController {
 		if (u){
 			def hisProfile = u.getProfile()
 			if (hisProfile.status.equals("Teacher")){
+				flash.message = "Hello "+ u.toString()
 				redirect(action: "list")
 			}else{
+				flash.message = "Hello "+ u.toString()
 				 redirect(action: "student_view")
 			}	
 		}else{
+			flash.message = "Error during authentification, please try again"
 			redirect(action: "index")
 		}
 	}
