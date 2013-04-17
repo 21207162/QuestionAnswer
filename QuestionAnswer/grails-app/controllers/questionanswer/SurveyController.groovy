@@ -22,13 +22,23 @@ class SurveyController {
 			}	
 		}else{
 			flash.message = "Error during authentification, please try again"
-			redirect(action: "index")
+			redirect(controller:"survey", action:"index")	
 		}
 	}
 
     def index() {
 		//redirect(action: "list", params:params)
-        render(view: "authentification")
+		if (session.user != null){
+			def u = User.findByName(session.user)
+			def hisProfile = u.getProfile()
+			if (hisProfile.status.equals("Teacher")){
+				redirect(controller:"Survey", action: "list")
+			}else{
+				redirect(controller:"Survey", action: "student_view")
+			}
+		}else{
+        	render(view: "authentification")
+		}
     }
 	
 	def vote() {
@@ -41,6 +51,18 @@ class SurveyController {
 		Answer a = Answer.findByAnswer(params.answer)
 		surveyService.voteForSurveyWithAnswer(s,a)
 		redirect(action: "show_q_student", controller: "Question", id: params.qid, params: [surv: s])
+	}
+	
+	def submit(Long id) {
+		def surveyInstance = Survey.get(id)
+		surveyService.submitSurvey(surveyInstance)
+		redirect(action: "show", id: surveyInstance.id)
+	}
+
+	def close(Long id) {
+			def surveyInstance = Survey.get(id)
+			surveyService.closeSurvey(surveyInstance)
+			redirect(action: "show", id: surveyInstance.id)
 	}
 
     def list(Integer max) {

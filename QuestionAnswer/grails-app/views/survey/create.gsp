@@ -16,6 +16,7 @@
 		</div>
 		<div id="create-survey" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+			<p style="margin:10px;">Here you can create a new survey. <br>Please select the question which you want to reference, and choose if the survey is opened or closed.</p>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

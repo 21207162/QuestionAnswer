@@ -81,15 +81,6 @@
 		</style>
 	</head>
 	<body>
-		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div id="status" role="complementary">
-			<h1>Application details</h1>
-			<ul>
-				<li>Awesome</li>
-				<li>Amazing</li>
-				<li>Great</li>
-			</ul>
-		</div>
 		<div id="page-body" role="main">
 			<h1>Welcome to Question/Answer application.</h1>
 			<p>This application allows teachers to ask question to their students.
@@ -100,10 +91,10 @@
 			If you are a student, you can vote for an answer.</p>
 
 			<div id="controller-list" role="navigation">
-				<h2>Available Controllers:</h2>
+				<h2>Available Actions:</h2>
 				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
+					<g:each var="c" in="${grailsApplication.controllerClasses.find { dc -> dc.name.equals("Survey") }}">
+						<g:link controller="${c.logicalPropertyName}">Access to application</g:link>
 					</g:each>
 				</ul>
 			</div>

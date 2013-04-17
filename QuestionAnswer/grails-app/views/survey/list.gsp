@@ -17,10 +17,12 @@
 			</ul>
 		</div>
 		<div id="list-survey" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			<h1>Administration surveys</h1>
+			<p style="margin:10px;">Welcome on survey administration page. Here, you can create new qusetions with answer and submit a question to a survey.
+			When you close a survey, you have access to statistics about this question, correct and wrong answers.</p>
 			<table>
 				<thead>
 					<tr>
@@ -34,7 +36,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${surveyInstance.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link></td>
-						<td>${fieldValue(bean: surveyInstance, field: "open")}</td>
+						<td><g:if test="${ surveyInstance.open }"> Opened </g:if><g:else> Closed </g:else></td>
 					
 					</tr>
 				</g:each>

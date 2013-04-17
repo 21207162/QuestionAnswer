@@ -16,7 +16,7 @@
 			</ul>
 		</div>
 		<div id="show-survey" class="content scaffold-show" role="main">
-			<h1>Survey Details (<g:if test="${ surveyInstance.open }"> Opened </g:if><g:else> Closed </g:else>)</h1>
+			<h1>Survey details (<g:if test="${ surveyInstance.open }"> Opened </g:if><g:else> Closed </g:else>)</h1></p>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -37,7 +37,8 @@
 					<g:hiddenField name="id" value="${surveyInstance?.id}" />
 					<g:link class="edit" action="edit" id="${surveyInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-					<g:actionSubmit action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:actionSubmit class="submit" action="submit" value="Submit"/>
+					<g:actionSubmit class="close" action="close" value="Close"/>
 				</fieldset>
 			</g:form>
 		</div>

@@ -7,8 +7,32 @@ class UserController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-        redirect(action: "list", params: params)
+        //redirect(action: "list", params: params)
     }
+	
+	def logIn(){
+		def u = User.findByNameAndPassword(params.name, params.password)
+		if (u){
+			def hisProfile = u.getProfile()
+			if (hisProfile.status.equals("Teacher")){
+				flash.message = "Hello "+ u.toString()
+				session.user = u.toString()
+				redirect(controller:"Survey", action: "list")
+			}else{
+				flash.message = "Hello "+ u.toString()
+				session.user = u.toString()
+				redirect(controller:"Survey", action: "student_view")
+			}
+		}else{
+			flash.message = "Error during authentification, please try again"
+			redirect(controller:"Survey", action:"index")
+		}
+	}
+	
+	def logOut(){
+		session.user=null
+		redirect(controller:"Survey", view:"index")
+	}
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
