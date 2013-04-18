@@ -2,9 +2,13 @@ package questionanswer
 
 class Survey {
 	Question question
-	Map<String,String> answers = new HashMap<String,String>()
+	def answers = [:]
 	Boolean open
-
+	String mapJson
+	
+	static transients= ["answers"]
+	
     static constraints = {
+		mapJson(nullable:true)
     }
 }

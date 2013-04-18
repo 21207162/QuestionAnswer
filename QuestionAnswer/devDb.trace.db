@@ -1,3 +1,12 @@
 04-17 21:50:56 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SURVEY_ANSWERS[*] SELECT * FROM SURVEY"; expected "SELECT, SET, SAVEPOINT, SCRIPT, SHUTDOWN, SHOW, {"; SQL statement:
 SURVEY_ANSWERS SELECT * FROM SURVEY [42001-164]
+04-18 14:08:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ANSWERS"; expected "ALTER, ANALYZE, {"; SQL statement:
+ANSWERS [42001-164]
+04-18 14:08:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ANSWERS"; expected "ALTER, ANALYZE, {"; SQL statement:
+ANSWERS [42001-164]
+04-18 15:10:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SURVEY[*] SELECT * FROM SURVEY_ANSWERS"; expected "SELECT, SET, SAVEPOINT, SCRIPT, SHUTDOWN, SHOW, {"; SQL statement:
+SURVEY SELECT * FROM SURVEY_ANSWERS [42001-164]
