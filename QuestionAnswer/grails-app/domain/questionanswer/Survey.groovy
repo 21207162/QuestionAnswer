@@ -2,7 +2,7 @@ package questionanswer
 
 class Survey {
 	Question question
-	Map<Answer,Integer> answers = new HashMap<Answer,Integer>()
+	Map<String,String> answers = new HashMap<String,String>()
 	Boolean open
 
     static constraints = {
