@@ -1,103 +1,75 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
-		<style type="text/css" media="screen">
-			#status {
-				background-color: #eee;
-				border: .2em solid #fff;
-				margin: 2em 2em 1em;
-				padding: 1em;
-				width: 12em;
-				float: left;
-				-moz-box-shadow: 0px 0px 1.25em #ccc;
-				-webkit-box-shadow: 0px 0px 1.25em #ccc;
-				box-shadow: 0px 0px 1.25em #ccc;
-				-moz-border-radius: 0.6em;
-				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
-			}
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title>Login and Registration Form with HTML5 and CSS3</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
+        <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+    </head>
+    <body>
+        <div class="container">
+            <section>				
+                <div id="container_demo" >
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form" >
+                                <h1><a href="http://localhost:8080/QuestionAnswer"><img src="${resource(dir: 'images', file: 'logoQA.png')}" alt="Grails"/></a></h1>
+                                <g:if test="${session.user}">
+									<div align=center>Login as ${session.user} <g:link controller="User" action="logOut">(Logout)</g:link></div>
+								</g:if>
+                                <p style="margin-top:20px" align=center> 
+									<g:each var="c" in="${grailsApplication.controllerClasses.find { dc -> dc.name.equals("Survey") }}">
+										<g:link controller="${c.logicalPropertyName}">Access to application</g:link>
+									</g:each>
+								</p>
+                                <p class="change_link">
+									<a href="#toregister" class="to_register">Join us</a>
+								</p>
+                        </div>
+                        <div id="register" class="animate form">
+                            <form  action="mysuperscript.php" autocomplete="on"> 
+                                <h1> Sign up </h1> 
+                                <p> 
+                                    <label for="usernamesignup" class="uname" data-icon="u">Your name</label>
+                                    <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="Your name" />
+                                </p>
+                                <p> 
+                                    <label for="emailsignup" class="youmail" data-icon="e" > Your forename</label>
+                                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="Your forename"/> 
+                                </p>
+                                <p> 
+                                    <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+                                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="Enter your password"/>
+                                </p>
+                                <p> 
+                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="Confirm your password"/>
+                                </p>
+                                <p class="signin button"> 
+									<input type="submit" value="Sign up"/> 
+								</p>
 
-			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-			}
-
-			#status ul {
-				font-size: 0.9em;
-				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
-			}
-
-			#status li {
-				line-height: 1.3;
-			}
-
-			#status h1 {
-				text-transform: uppercase;
-				font-size: 1.1em;
-				margin: 0 0 0.3em;
-			}
-
-			#page-body {
-				margin: 2em 1em 1.25em 18em;
-			}
-
-			h2 {
-				margin-top: 1em;
-				margin-bottom: 0.3em;
-				font-size: 1em;
-			}
-
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
-
-			#controller-list ul {
-				list-style-position: inside;
-			}
-
-			#controller-list li {
-				line-height: 1.3;
-				list-style-position: inside;
-				margin: 0.25em 0;
-			}
-
-			@media screen and (max-width: 480px) {
-				#status {
-					display: none;
-				}
-
-				#page-body {
-					margin: 0 1em 1em;
-				}
-
-				#page-body h1 {
-					margin-top: 0;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<div id="page-body" role="main">
-			<h1>Welcome to Question/Answer application.</h1>
-			<p>This application allows teachers to ask question to their students.
-			The student can vote for an answer and then we have the possibility to show statistics.
-			For the moment, there are two different profiles : Teacher and Student
-			If you are a teacher, you can create or delete a question, purpose some answer 
-			to this question and open and close the question to a vote.
-			If you are a student, you can vote for an answer.</p>
-
-			<div id="controller-list" role="navigation">
-				<h2>Available Actions:</h2>
-				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.find { dc -> dc.name.equals("Survey") }}">
-						<g:link controller="${c.logicalPropertyName}">Access to application</g:link>
-					</g:each>
-				</ul>
-			</div>
-		</div>
-	</body>
+                                <p class="change_link">  
+									Already a member ?
+									<a href="#tologin" class="to_register">Log in </a>
+								</p>
+                            </form>
+                        </div>				
+                    </div>
+                </div>  
+            </section>
+        </div>
+    </body>
 </html>
