@@ -17,8 +17,9 @@ class AnswerController {
         [answerInstanceList: Answer.list(params), answerInstanceTotal: Answer.count()]
     }
 
-    def create() {
-		[answerInstance: new Answer(params)]
+    def create(Long id) {
+		def q = Question.get(id)
+		[answerInstance: new Answer(params), questionInstance : q]
     }
 
     def save() {
@@ -29,7 +30,7 @@ class AnswerController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'answer.label', default: 'Answer'), answerInstance.id])
-        redirect(action: "show", id: answerInstance.id)
+        redirect(action: "create", id: params.question.id)
     }
 
     def show(Long id) {
