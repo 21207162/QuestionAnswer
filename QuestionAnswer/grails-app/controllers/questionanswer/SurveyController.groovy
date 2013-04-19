@@ -33,7 +33,7 @@ class SurveyController {
 		}
 		Answer a = Answer.findByAnswer(params.answer)
 		surveyService.voteForSurveyWithAnswer(s,a)
-		redirect(action: "show_q_student", controller: "Question", id: params.qid, params: [surv: s])
+		redirect(action: "student_view", controller: "Survey", id: params.qid, params: [surv: s])
 	}
 	
 	def submit(Long id) {

@@ -16,11 +16,11 @@ class UserController {
 			def hisProfile = u.getProfile()
 			if (hisProfile.status.equals("Teacher")){
 				flash.message = "Hello "+ u.toString()
-				session.user = u.toString()
+				session.user = u.name
 				redirect(controller:"Survey", action: "list")
 			}else{
 				flash.message = "Hello "+ u.toString()
-				session.user = u.toString()
+				session.user = u.name
 				redirect(controller:"Survey", action: "student_view")
 			}
 		}else{

@@ -21,7 +21,7 @@
 		<div id="grailsLogo" role="banner">
 			<a href="http://localhost:8080/QuestionAnswer"><img src="${resource(dir: 'images', file: 'logo.png')}" alt="Grails"/></a>		
 			<g:if test="${session.user}">
-				<div style="float:right; margin-top:50px; margin-right:50px;">Login as : ${session.user} <g:link controller="User" action="logOut">(Logout)</g:link></div>
+				<div style="float:right; margin-top:50px; margin-right:50px;">Login as ${session.user} <g:link controller="User" action="logOut">(Logout)</g:link></div>
 			</g:if>
 		</div>
 		<g:layoutBody/>
