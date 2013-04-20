@@ -3,6 +3,9 @@ import questionanswer.User
 import questionanswer.Question
 import questionanswer.Answer
 import questionanswer.Survey
+import questionanswer.Enum_profile
+
+
 
 class BootStrap {
 
@@ -14,7 +17,7 @@ class BootStrap {
 				println "An error occured with adam"}
 		}
 		
-		Profile student = new Profile(status:"Student")
+		Profile student = new Profile(status:Enum_profile.STUDENT)
 		
 		if(!student.save()) {
 			student.errors.allErrors.each{error ->
