@@ -45,14 +45,14 @@ class UserController {
 
     def save() {
 		if (params.passwordsignup == params.passwordsignup_confirm){
-			def userInstance = new User(params.forenamesignup, params.namesignup, params.passwordsignup, Enum_profile.STUDENT)
-			userInstance.toString()
+			def profile = Profile.findByStatus(Enum_profile.STUDENT)
+			def userInstance = new User(forename:params.forenamesignup, name:params.namesignup, password:params.passwordsignup, profile:profile)
 			if (!userInstance.save(flush: true)) {
 				render(view: "create", model: [userInstance: userInstance])
 				return
 			}
 			flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-			redirect(action: "show", id: userInstance.id)
+			redirect(controller:"Survey", action: "index", id: userInstance.id)
 		}else{
 			flash.message = "Error during signin, check your password"
 		}

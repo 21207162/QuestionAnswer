@@ -14,7 +14,7 @@ class SurveyController {
 		if (session.user != null){
 			def u = User.findByName(session.user)
 			def hisProfile = u.getProfile()
-			if (hisProfile.status.equals(Enum_profile.STUDENT)){
+			if (hisProfile.status.equals(Enum_profile.TEACHER)){
 				redirect(controller:"Survey", action: "list")
 			}else{
 				redirect(controller:"Survey", action: "student_view")
