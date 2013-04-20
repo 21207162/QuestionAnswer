@@ -7,7 +7,7 @@ import questionanswer.Survey
 class BootStrap {
 
     def init = { servletContext ->
-		Profile teacher = new Profile(status:"Teacher")
+		Profile teacher = new Profile(status:Enum_profile.TEACHER)
 		
 		if(!teacher.save()) {
 			teacher.errors.allErrors.each{error ->
