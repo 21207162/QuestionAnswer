@@ -52,7 +52,6 @@ class UserController {
 				return
 			}
 			flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-			session.user = userInstance.name
 			redirect(controller:"Survey", action: "index", id: userInstance.id)
 		}else{
 			flash.message = "Error during signin, check your password"
