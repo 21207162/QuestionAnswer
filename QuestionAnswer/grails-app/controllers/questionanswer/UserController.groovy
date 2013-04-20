@@ -10,24 +10,26 @@ class UserController {
         //redirect(action: "list", params: params)
     }
 	
+
+	
 	def logIn(){
 		def u = User.findByNameAndPassword(params.name, params.password)
 		if (u){
-			def hisProfile = u.getProfile()
-			if (hisProfile.status.equals(Enum_profile.TEACHER)){
-				flash.message = "Hello "+ u.toString()
-				session.user = u.name
-				redirect(controller:"Survey", action: "list")
-			}else{
-				flash.message = "Hello "+ u.toString()
-				session.user = u.name
-				redirect(controller:"Survey", action: "student_view")
-			}
+		def hisProfile = u.getProfile()
+		if (hisProfile.status.equals(Enum_profile.TEACHER)){
+		flash.message = "Hello "+ u.toString()
+		session.user = u.name
+		redirect(controller:"Survey", action: "list")
 		}else{
-			flash.message = "Error during authentification, please try again"
-			redirect(controller:"Survey", action:"index")
+		flash.message = "Hello "+ u.toString()
+		session.user = u.name
+		redirect(controller:"Survey", action: "student_view")
 		}
-	}
+		}else{
+		flash.message = "Error during authentification, please try again"
+		redirect(controller:"Survey", action:"index")
+		}
+		}
 	
 	def logOut(){
 		session.user=null

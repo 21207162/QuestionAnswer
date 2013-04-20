@@ -4,8 +4,8 @@
     <head>
         <meta charset="UTF-8" />
 		<title>QuestionAnswer</title>
-        <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="../css/style_app.css" />
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'demo.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'style_app.css')}" type="text/css">
         <script type="text/javascript" src="../js/script.js"></script>
     </head>
     <body>
