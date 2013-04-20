@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="title-label" class="property-label"><g:message code="question.title.label" default="Title" /></span>
 					
-						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${questionInstance}" field="title"/></span>
+						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${questionInstance}" field="title"/> ?</span>
 					
 				</li>
 				</g:if>

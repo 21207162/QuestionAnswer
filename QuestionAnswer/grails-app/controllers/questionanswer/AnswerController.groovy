@@ -23,13 +23,27 @@ class AnswerController {
     }
 
     def save() {
-        def answerInstance = new Answer(params)
-        if (!answerInstance.save(flush: true)) {
-            render(view: "create", model: [answerInstance: answerInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.created.message', args: [message(code: 'answer.label', default: 'Answer'), answerInstance.id])
+		def question = Question.get(params.question.id)
+		if(params.right) {
+			if(question.getHasARightAnswer()) {
+				flash.message = "Error : a right answer has already been assigned. The creation of the answer has been canceled."
+			} else {
+				def answerInstance = new Answer(params)
+				if (!answerInstance.save(flush: true)) {
+					render(view: "create", model: [answerInstance: answerInstance])
+					return
+				}
+				question.setHasARightAnswer(true)
+				flash.message = message(code: 'default.created.message', args: [message(code: 'answer.label', default: 'Answer'), answerInstance.id])
+			}
+		} else {
+			def answerInstance = new Answer(params)
+			if (!answerInstance.save(flush: true)) {
+				render(view: "create", model: [answerInstance: answerInstance])
+				return
+			}
+			flash.message = message(code: 'default.created.message', args: [message(code: 'answer.label', default: 'Answer'), answerInstance.id])
+		}
         redirect(action: "create", id: params.question.id)
     }
 
@@ -51,11 +65,12 @@ class AnswerController {
             redirect(action: "list")
             return
         }
+		def q = Question.get(params.qid)
 
-        [answerInstance: answerInstance]
+        [answerInstance: answerInstance, questionInstance:q]
     }
 
-    def update(Long id, Long version) {
+    def update(Long id, Long version, Boolean checked) {
         def answerInstance = Answer.get(id)
         if (!answerInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'answer.label', default: 'Answer'), id])
@@ -72,15 +87,35 @@ class AnswerController {
                 return
             }
         }
-
+			
         answerInstance.properties = params
 
-        if (!answerInstance.save(flush: true)) {
-            render(view: "edit", model: [answerInstance: answerInstance])
-            return
-        }
+		if (!answerInstance.save(flush: true)) {
+			render(view: "edit", model: [answerInstance: answerInstance])
+			return
+		}
+		Boolean wasChecked = new Boolean(params.wasChecked)
+		def q = Question.get(params.qid)
+		if(wasChecked) {
+			if(!answerInstance.isRight()) {
+				q.setHasARightAnswer(false)
+			} else {
+				q.setHasARightAnswer(true)
+			}
+			flash.message = message(code: 'default.updated.message', args: [message(code: 'answer.label', default: 'Answer'), answerInstance.id])
+		} else {
+			if(answerInstance.isRight()) {
+				if(!q.getHasARightAnswer()) {
+					q.setHasARightAnswer(true)
+					flash.message = message(code: 'default.updated.message', args: [message(code: 'answer.label', default: 'Answer'), answerInstance.id])
+				} else {
+					answerInstance.right = false
+					answerInstance.save(flush: true)
+					flash.message = "Error : a right answer has already been assigned. The update of the answer has been canceled."
+				}
+			}
+		}
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'answer.label', default: 'Answer'), answerInstance.id])
         redirect(action: "show", id: answerInstance.id)
     }
 

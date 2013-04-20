@@ -6,6 +6,7 @@ class Question {
 	String title
 	static hasMany=[answers:Answer]
 	User author
+	Boolean hasARightAnswer = false
 	
 	String toString() {
 		title + " ?"
@@ -13,6 +14,7 @@ class Question {
 	
     static constraints = {
 		title(blank:false)
+		hasARightAnswer(nullable:true)
 		author(nullable:true)
     }
 }

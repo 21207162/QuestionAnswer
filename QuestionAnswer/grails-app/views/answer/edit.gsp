@@ -30,6 +30,8 @@
 			<g:form method="post" >
 				<g:hiddenField name="id" value="${answerInstance?.id}" />
 				<g:hiddenField name="version" value="${answerInstance?.version}" />
+				<g:hiddenField name="wasChecked" value="${answerInstance?.right}" />
+				<g:hiddenField name="qid" value="${questionInstance.id}" />
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

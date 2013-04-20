@@ -9,10 +9,11 @@ class Answer {
     }
 	
 	def isRight(){
-		return right = true
+		return right
 	}
 	
 	String toString() {
 		answer
 	}
 }
+
