@@ -29,11 +29,9 @@
                                 <g:if test="${session.user}">
 									<div align=center>Login as ${session.user} <g:link controller="User" action="logOut">(Logout)</g:link></div>
 								</g:if>
-                                <p style="margin-top:20px" align=center> 
-									<g:each var="c" in="${grailsApplication.controllerClasses.find { dc -> dc.name.equals("Survey") }}">
-										<g:link controller="${c.logicalPropertyName}">Access to application</g:link>
-									</g:each>
-								</p>
+                                <div class="access_button"> 
+									<a class="access" href="${createLink(controller:'Survey', action:'index')}">Acces to application</a>
+								</div>
                                 <p class="change_link">
 									<a href="#toregister" class="to_register">Join us</a>
 								</p>
@@ -63,7 +61,7 @@
 
                                 <p class="change_link">  
 									Already a member ?
-									<a href="#tologin" class="to_register">Log in </a>
+									<a href="${createLink(controller:'Survey', action:'index')}" class="to_register">Log in </a>
 								</p>
                             </form>
                         </div>				
