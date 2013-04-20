@@ -168,9 +168,9 @@ input {
 
 /* all the input except submit and checkbox */
 #wrapper input:not([type="checkbox"]){
-	width: 92%;
+	width: 300px;
 	margin-top: 4px;
-	padding: 10px 5px 10px 32px;	
+	padding: 10px 5px 10px 5px;	
 	border: 1px solid rgb(178, 178, 178);
 	-webkit-appearance: textfield;
 	-webkit-box-sizing: content-box;
@@ -417,7 +417,7 @@ p.change_link{
 	position: absolute;
 	top: 0px;
 	width: 88%;	
-	padding: 18px 6% 60px 6%;
+	padding: 18px 6% 20px 6%;
 	margin: 0 0 35px 0;
 	background: rgb(247, 247, 247);
 	border: 1px solid rgba(147, 184, 189,0.8);
@@ -621,7 +621,7 @@ th.desc a {
 }
 
 .odd {
-	background: #f7f7f7;
+	background: #fbfbfb;
 }
 
 .even {
@@ -774,4 +774,33 @@ fieldset.embedded {
 
 fieldset.embedded legend {
 	margin: 0 1em;
+}
+
+/* PAGINATION */
+
+.pagination {
+	border-top: 0;
+	margin: 0;
+	padding: 0.3em 0.2em;
+	text-align: center;
+}
+
+.pagination a,
+.pagination .currentStep {
+	color: #666666;
+	display: inline-block;
+	margin: 0 0.1em;
+	padding: 0.25em 0.7em;
+	text-decoration: none;
+}
+
+.pagination a:hover, .pagination a:focus,
+.pagination .currentStep {
+	color: #000;
+	outline: none;
+}
+
+.no-borderradius .pagination a:hover, .no-borderradius .pagination a:focus,
+.no-borderradius .pagination .currentStep {
+	color: #444444;
 }

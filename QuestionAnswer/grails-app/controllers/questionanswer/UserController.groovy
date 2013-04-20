@@ -14,7 +14,7 @@ class UserController {
 		def u = User.findByNameAndPassword(params.name, params.password)
 		if (u){
 			def hisProfile = u.getProfile()
-			if (hisProfile.status.equals("Teacher")){
+			if (hisProfile.status.equals(Enum_profile.TEACHER)){
 				flash.message = "Hello "+ u.toString()
 				session.user = u.name
 				redirect(controller:"Survey", action: "list")
@@ -45,7 +45,7 @@ class UserController {
 
     def save() {
 		if (params.passwordsignup == params.passwordsignup_confirm){
-			def userInstance = new User(params.forenamesignup, params.namesignup, params.passwordsignup)
+			def userInstance = new User(params.forenamesignup, params.namesignup, params.passwordsignup, Enum_profile.STUDENT)
 			userInstance.toString()
 			if (!userInstance.save(flush: true)) {
 				render(view: "create", model: [userInstance: userInstance])

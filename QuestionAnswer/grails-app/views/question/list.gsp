@@ -18,6 +18,8 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			<p style="margin: 10px;">Welcome on question list page.
+			Here, you can create new questions with answer.</p>
 			<table>
 				<thead>
 					<tr>
