@@ -44,14 +44,18 @@ class UserController {
     }
 
     def save() {
-        def userInstance = new User(params)
-        if (!userInstance.save(flush: true)) {
-            render(view: "create", model: [userInstance: userInstance])
-            return
-        }
-
-        flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-        redirect(action: "show", id: userInstance.id)
+		if (params.passwordsignup == params.passwordsignup_confirm){
+			def userInstance = new User(params.forenamesignup, params.namesignup, params.passwordsignup)
+			userInstance.toString()
+			if (!userInstance.save(flush: true)) {
+				render(view: "create", model: [userInstance: userInstance])
+				return
+			}
+			flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
+			redirect(action: "show", id: userInstance.id)
+		}else{
+			flash.message = "Error during signin, check your password"
+		}
     }
 
     def show(Long id) {
