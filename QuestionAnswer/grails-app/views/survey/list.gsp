@@ -1,4 +1,5 @@
 <%@ page import="questionanswer.Survey" %>
+<%@ page import="questionanswer.Enum_state_survey" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,8 +36,11 @@
 						<td><g:link action="show" id="${surveyInstance.id}">
 								${fieldValue(bean: surveyInstance, field: "question")}
 							</g:link></td>
-						<td><g:if test="${ surveyInstance.open }"> Opened </g:if>
-							<g:else> Closed </g:else></td>
+						<td><g:if test="${ surveyInstance.open = Enum_state_survey.OPENED }"> Opened </g:if>
+							<g:else>
+								<g:if test="${ surveyInstance.open = Enum_state_survey.CLOSED }"> Closed </g:if>
+								<g:else>OVER</g:else>
+							</g:else></td>
 	
 					</tr>
 				</g:each>

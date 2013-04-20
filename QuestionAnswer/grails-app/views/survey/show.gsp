@@ -1,5 +1,6 @@
 
 <%@ page import="questionanswer.Survey" %>
+<%@ page import="questionanswer.Enum_state_survey" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +10,10 @@
 	</head>
 	<body>
 		<div id="show-survey" class="content scaffold-show" role="main">
-			<h1>Survey details (<g:if test="${ surveyInstance.open }"> Opened </g:if><g:else> Closed </g:else>)</h1></p>
+			<h1>Survey details (<g:if test="${ surveyInstance.open == Enum_state_survey.OPENED }"> Opened </g:if>
+			<g:else><g:if test="${ surveyInstance.open == Enum_state_survey.CLOSED }"> Closed </g:if>
+			<g:else>Over</g:else>
+			</g:else>)</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -32,7 +36,9 @@
 					<g:hiddenField name="id" value="${surveyInstance?.id}" />
 					<g:link class="edit" action="edit" id="${surveyInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-					<g:actionSubmit class="submit" action="submit" value="Submit"/>
+					<g:if test="${ surveyInstance.open != Enum_state_survey.OVER }">
+						<g:actionSubmit class="submit" action="submit" value="Submit"/>
+					</g:if>
 					<g:actionSubmit class="close" action="close" value="Close"/>
 					<div class="access_button"> 
 						<a class="access" href="${createLink(controller:'Survey', action:'close')}">Close survey</a>

@@ -3,7 +3,7 @@ package questionanswer
 class Survey {
 	Question question
 	def answers = [:]
-	Boolean open
+	Enum_state_survey open
 	String mapJson
 	
 	static transients= ["answers"]

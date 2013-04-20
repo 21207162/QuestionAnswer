@@ -7,11 +7,11 @@ import org.hibernate.collection.PersistentMap.MapEntryProxy
 class SurveyService {
 
     def submitSurvey(Survey s) {
-		s.open = true
+		s.open = Enum_state_survey.OPENED
     }
 	
 	def closeSurvey(Survey s){
-		s.open = false
+		s.open = Enum_state_survey.OVER
 	}
 	
 	def addAnswersInSurveyFromQuestion(Survey s, Question q) {

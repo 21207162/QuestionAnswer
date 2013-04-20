@@ -1,4 +1,5 @@
 <%@ page import="questionanswer.Survey" %>
+<%@ page import="questionanswer.Enum_state_survey" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,6 +28,7 @@
 			</g:hasErrors>
 			<g:form action="save" >
 				<fieldset class="form">
+					<g:hiddenField name="open" value="${Enum_state_survey.CLOSED}" />
 					<g:render template="form"/>
 				</fieldset>
 				<p class="signin button">
