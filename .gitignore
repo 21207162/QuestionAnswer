@@ -5,3 +5,6 @@ target/
 .class
 .db
 .log
+*.class
+*.db
+*.log
