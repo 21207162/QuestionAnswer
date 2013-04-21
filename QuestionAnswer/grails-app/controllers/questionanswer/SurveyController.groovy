@@ -1,5 +1,6 @@
 package questionanswer
 
+import groovy.json.JsonSlurper
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 import org.springframework.dao.DataIntegrityViolationException
 
@@ -45,7 +46,22 @@ class SurveyController {
 	def close(Long id) {
 			def surveyInstance = Survey.get(id)
 			surveyService.closeSurvey(surveyInstance)
-			redirect(action: "show", id: surveyInstance.id)
+			redirect(action: "stats", id: surveyInstance.id)
+	}
+	
+	def stats(Long id) {
+		def surveyInstance = Survey.get(id)
+		def slurper = new JsonSlurper()
+		def rightAnswer
+		def map = slurper.parseText(surveyInstance.getMapJson())
+		map.entrySet().each {
+			def answer = Answer.get(Integer.parseInt(it.key))
+			if(answer.isRight())
+				rightAnswer = answer
+		}
+		def myList = surveyService.CalculateStatistics(surveyInstance) as grails.converters.JSON
+		def myGlobalList = surveyService.CalculateStatisticsGlobal(surveyInstance) as grails.converters.JSON
+		render(view: "stats_diagrams", model: [surveyInstance: surveyInstance, rightAnswer:rightAnswer, listStats : myList, listGlobalStats : myGlobalList])
 	}
 
     def list(Integer max) {
