@@ -685,11 +685,10 @@ fieldset,
 	clear: both
 }
 
-.vote {
+#vote {
 	background-color: buttonface;
 	border: 2px outset buttonface;
-	font-size: 0.9em;
-	padding: 0.2em 0.4em;
+	width:30px;
 }
 
 label {
@@ -805,3 +804,5 @@ fieldset.embedded legend {
 .no-borderradius .pagination .currentStep {
 	color: #444444;
 }
+
+

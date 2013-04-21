@@ -28,26 +28,33 @@
 				<li class="fieldcontain">
 					<span id="author-label" class="property-label"><g:message code="question.author.label" default="Author" /></span>
 					
-						<span class="property-value" aria-labelledby="author-label"><g:link controller="user" action="show" id="${questionInstance?.author?.id}">${questionInstance?.author?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="author-label">${questionInstance?.author?.encodeAsHTML()}</span>
 					
-				</li>
+				</li><br>
 				</g:if>
-				
 				<g:if test="${questionInstance?.answers}">
-				<li class="fieldcontain">
-					<span id="answers-label" class="property-label"><g:message code="question.answers.label" default="Answers" /></span>
-					
+				<table>
+					<thead>
+						<tr>
+							<th><g:message code="survey.question.label" default="Answer" /></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
 						<g:each in="${questionInstance.answers}" var="a">
-						<span class="property-value" aria-labelledby="answers-label"></span><br/>
-							<div class="property-div-value">${a?.encodeAsHTML()}</div>
-							<div class="property-div-form">
-								<g:form controller="Survey" action="vote" method="post"  params="[s:params.surv, survey: survey, answer: a, qid: questionid]">
-									<g:submitButton name="vote" class="vote" value="${message(code: 'Vote for this answer', default: 'Vote for this answer')}" />
-								</g:form>
-							</div>
-						<div class="property-div-stop"></div>
-						</g:each>					
-				</li>
+							<tr>
+								<td style="width:80%">
+									<div class="property-div-value">${a?.encodeAsHTML()}</div>
+								</td>
+								<td style="width:20%">
+									<g:form controller="Survey" action="vote" method="post"  params="[s:params.surv, survey: survey, answer: a, qid: questionid]">
+										<g:submitButton name="vote" value="${message(code: 'Vote', default: 'Vote')}" />
+									</g:form>
+								</td>			
+							</tr>
+						</g:each>
+					</tbody>
+				</table>
 				</g:if>
 			
 			</ol>

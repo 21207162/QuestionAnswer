@@ -29,7 +29,7 @@
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 							<td>
 								<g:if test="${surveyInstance.open == Enum_state_survey.OVER}">
-									<g:link controller="Survey" action="show" params="[survey: surveyInstance.id]" id="${surveyInstance.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link>
+									<g:link controller="Survey" action="show_s_student" params="[survey: surveyInstance.id]" id="${surveyInstance.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link>
 								</g:if>
 								<g:else>
 									<g:link controller="question" action="show_q_student" params="[survey: surveyInstance.id]" id="${surveyInstance.question.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link>

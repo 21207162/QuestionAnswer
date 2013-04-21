@@ -25,6 +25,17 @@ class SurveyController {
 		}
     }
 	
+	def show_s_student(Long id) {
+		def surveyInstance = Survey.get(id)
+		if (!surveyInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Survey'), id])
+			redirect(action: "list")
+			return
+		}
+
+		[surveyInstance: surveyInstance]
+	}
+	
 	def vote() {
 		Survey s = Survey.get(params.survey)
 		if(s==null) {
@@ -62,6 +73,21 @@ class SurveyController {
 		def myList = surveyService.CalculateStatistics(surveyInstance) as grails.converters.JSON
 		def myGlobalList = surveyService.CalculateStatisticsGlobal(surveyInstance) as grails.converters.JSON
 		render(view: "stats_diagrams", model: [surveyInstance: surveyInstance, rightAnswer:rightAnswer, listStats : myList, listGlobalStats : myGlobalList])
+	}
+	
+	def stats_student(Long id) {
+		def surveyInstance = Survey.get(id)
+		def slurper = new JsonSlurper()
+		def rightAnswer
+		def map = slurper.parseText(surveyInstance.getMapJson())
+		map.entrySet().each {
+			def answer = Answer.get(Integer.parseInt(it.key))
+			if(answer.isRight())
+				rightAnswer = answer
+		}
+		def myList = surveyService.CalculateStatistics(surveyInstance) as grails.converters.JSON
+		def myGlobalList = surveyService.CalculateStatisticsGlobal(surveyInstance) as grails.converters.JSON
+		render(view: "stats_diagrams_student", model: [surveyInstance: surveyInstance, rightAnswer:rightAnswer, listStats : myList, listGlobalStats : myGlobalList])
 	}
 
     def list(Integer max) {
