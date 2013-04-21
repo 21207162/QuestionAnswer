@@ -30,7 +30,9 @@
         // Set chart options
         var options = {'title':'Percentage per answer',
                        'width':830,
-                       'height':300};
+                       'height':300,
+                       'backgroundColor':'#F7F7F7',
+                       'is3D':true};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -58,7 +60,9 @@
         // Set chart options
         var options = {'title':'Percentage right/wrong answer',
                        'width':830,
-                       'height':300};
+                       'height':300,
+                       'backgroundColor':'#F7F7F7',
+                       'is3D':true};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div_2'));
