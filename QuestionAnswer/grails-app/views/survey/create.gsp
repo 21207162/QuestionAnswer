@@ -10,11 +10,8 @@
 	<body>
 		<div id="create-survey" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+			<a href="${createLink(controller:'Survey', action:'list')}" ><< Back to survey list</a>
+			<a style="float:right" href="${createLink(controller:'Question', action:'list')}" >Go to question list >></a>
 			<p style="margin:10px;">Here you can create a new survey. <br>Please select the question which you want to reference, and choose if the survey is opened or closed.</p>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
@@ -31,10 +28,12 @@
 					<g:hiddenField name="open" value="${Enum_state_survey.CLOSED}" />
 					<g:render template="form"/>
 				</fieldset>
+
 				<p class="signin button">
 					<input name="create" class="save" type="submit" value="Create"/> 
 				</p>
 			</g:form>
+
 		</div>
 	</body>
 </html>

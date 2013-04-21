@@ -14,14 +14,11 @@
 			<g:else><g:if test="${ surveyInstance.open == Enum_state_survey.CLOSED }"> Closed </g:if>
 			<g:else>Over</g:else>
 			</g:else>)</h1>
+			<a href="${createLink(controller:'Survey', action:'list')}" ><< Go to survey list</a>
+			<a style="float:right" href="${createLink(controller:'Question', action:'list')}" >Go to question list >></a>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<div class="nav" role="navigation">
-				<ul>
-					<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				</ul>
-			</div>
 			<ol class="property-list survey">
 			
 				<g:if test="${surveyInstance?.question}">
@@ -34,20 +31,19 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${surveyInstance?.id}" />
-					<g:if test="${ surveyInstance.open == Enum_state_survey.CLOSED }">
-						<g:link class="edit" action="edit" id="${surveyInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-					</g:if>
-					<g:if test="${ surveyInstance.open != Enum_state_survey.OVER }">
-						<g:actionSubmit class="submit" action="submit" value="Submit"/>
-						<g:actionSubmit class="close" action="close" value="Close"/>
-						<div class="access_button"> 
-							<a class="access" href="${createLink(controller:'Survey', action:'close')}">Close survey</a>
-						</div>
-					</g:if>
-					<g:else>
-						<g:actionSubmit class="close" action="close" value="Go to results"/>
-					</g:else>
+					<div class="access_button">
+						<g:if test="${ surveyInstance.open == Enum_state_survey.CLOSED }">
+							<a class="access" href="${createLink(controller:'Survey', action:'edit', id:surveyInstance?.id)}" >Edit</a>
+							<input class="access" type="submit" onclick="return confirm('Are you sure?');" value="Delete" name="_action_delete">
+						</g:if>
+						<g:if test="${ surveyInstance.open != Enum_state_survey.OVER }">
+							<a class="access" href="${createLink(controller:'Survey', action:'submit')}">Submit</a>
+							<a class="access" href="${createLink(controller:'Survey', action:'close')}">Close</a>
+						</g:if>
+						<g:else>
+							<a class="access" href="${createLink(controller:'Survey', action:'close')}">Go to results</a>
+						</g:else>
+					</div>
 				</fieldset>
 			</g:form>
 		</div>

@@ -14,10 +14,6 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
 			<p style="margin: 10px;">Welcome on question list page.
 			Here, you can create new questions with answers.</p>
 			<table>
@@ -42,9 +38,15 @@
 				</g:each>
 				</tbody>
 			</table>
+			<br>
+			<fieldset class="buttons">
+				<div class="access_button">
+					<a class="access" href="${createLink(controller:'Survey', action:'create')}">Create Survey</a> 
+					<a class="access" href="${createLink(controller:'Question', action:'create')}">Create Question</a>
+				</div>
+			</fieldset>
 			<div class="pagination">
 				<g:paginate total="${questionInstanceTotal}" />
 			</div>
-		</div>
 	</body>
 </html>

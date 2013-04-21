@@ -9,11 +9,8 @@
 	<body>		
 		<div id="create-question" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
+			<a href="${createLink(controller:'Question', action:'list')}" ><< Back to question list</a>
+			<a style="float:right" href="${createLink(controller:'Survey', action:'list')}" >Go to survey list >></a>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
