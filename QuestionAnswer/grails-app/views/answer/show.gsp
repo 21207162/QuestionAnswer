@@ -46,10 +46,10 @@
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${answerInstance?.id}" />
+				 	<g:hiddenField name="id" value="${answerInstance?.id}" />
 					<div class="access_button">
 						<a class="access" href="${createLink(controller:'Answer', action:'list')}" >Answer List</a>
-						<a class="access" href="${createLink(controller:'Answer', action:'edit', id:AnswerInstance.id)}" >Edit</a>
+						<a class="access" href="${createLink(controller:'Answer', action:'edit', id: answerInstance?.id, params:[qid : answerInstance?.question.id])}" >Edit</a>
 						<input class="access" type="submit" onclick="return confirm('Are you sure?');" value="Delete" name="_action_delete">
 					</div>
 				</fieldset>
