@@ -25,9 +25,17 @@
 				</thead>
 				<tbody>
 				<g:each in="${surveyInstanceList}" status="i" var="surveyInstance">
-					<g:if test="${surveyInstance.open == Enum_state_survey.OPENED}">
+					<g:if test="${surveyInstance.open != Enum_state_survey.CLOSED}">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-							<td><g:link controller="question" action="show_q_student" params="[survey: surveyInstance.id]" id="${surveyInstance.question.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link></td>
+							<td>
+								<g:if test="${surveyInstance.open == Enum_state_survey.OVER}">
+									<g:link controller="Survey" action="show" params="[survey: surveyInstance.id]" id="${surveyInstance.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link>
+								</g:if>
+								<g:else>
+									<g:link controller="question" action="show_q_student" params="[survey: surveyInstance.id]" id="${surveyInstance.question.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link>
+								</g:else>
+								<span>(${surveyInstance.open})</span>
+							</td>
 						</tr>
 					</g:if>
 				</g:each>
