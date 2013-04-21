@@ -42,6 +42,15 @@ class QuestionController {
     }
 	
 	def show_q_student(Long id) {
+		def student = User.findByName(session.user)
+		def s = Survey.get(Integer.parseInt(params.survey))
+		def userSurvey = UserSurvey.get(student.getId(), Integer.parseInt(params.survey))
+		if(userSurvey.getVoted()) {
+			flash.message = "Sorry, you have already voted for this survey"
+			redirect(action: "student_view", controller: "Survey", params: [surv: s],id: id)
+			return
+		}
+		
 		def questionInstance = Question.get(id)
 		if (!questionInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])

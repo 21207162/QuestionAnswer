@@ -43,8 +43,11 @@ class SurveyController {
 			int sid = Integer.parseInt(tid)
 			s =  Survey.get(sid)
 		}
+		def student = User.findByName(session.user)
+		def userSurvey = UserSurvey.get(student.getId(), s.getId())
 		Answer a = Answer.findByAnswer(params.answer)
 		surveyService.voteForSurveyWithAnswer(s,a)
+		userSurvey.setVoted(true)
 		redirect(action: "student_view", controller: "Survey", id: params.qid, params: [surv: s])
 	}
 	
@@ -112,6 +115,14 @@ class SurveyController {
         }
 		def question = Question.get( params.question.id)
 		surveyService.addAnswersInSurveyFromQuestion(surveyInstance,question)
+		def students = User.findAll("\
+			from User as u, \
+				 Profile as p \
+			where u.profile = p.id and p.status = ?", [Enum_profile.STUDENT])
+		students.each {
+			def student = User.get(it.id[0])
+			UserSurvey.create(student, surveyInstance, false)
+		}
         flash.message = message(code: 'default.created.message', args: [message(code: 'survey.label', default: 'Survey'), surveyInstance.id])
         redirect(action: "show", id: surveyInstance.id)
     }
@@ -168,13 +179,14 @@ class SurveyController {
     }
 
     def delete(Long id) {
-		System.out.println("COUCOU");
         def surveyInstance = Survey.get(id)
         if (!surveyInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'survey.label', default: 'Survey'), id])
             redirect(action: "list")
             return
         }
+		
+		UserSurvey.removeAll(surveyInstance)
 
         try {
             surveyInstance.delete(flush: true)

@@ -12,6 +12,7 @@ class SurveyService {
 	
 	def closeSurvey(Survey s){
 		s.open = Enum_state_survey.OVER
+		UserSurvey.removeAll(s)
 	}
 	
 	def addAnswersInSurveyFromQuestion(Survey s, Question q) {
@@ -76,6 +77,5 @@ class SurveyService {
 			map["${a.getId()}"]=newValue
 		
 		s.setMapJson(groovy.json.JsonOutput.toJson(map))
-		
 	}
 }
