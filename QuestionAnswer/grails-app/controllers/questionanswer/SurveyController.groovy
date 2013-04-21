@@ -126,6 +126,7 @@ class SurveyController {
     }
 
     def delete(Long id) {
+		System.out.println("COUCOU");
         def surveyInstance = Survey.get(id)
         if (!surveyInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'survey.label', default: 'Survey'), id])

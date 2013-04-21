@@ -15,7 +15,7 @@
 				<li><a class="home" href="${createLink(uri: '/')}"><img src="${resource(dir: 'images/skin', file: 'house.png')}" alt="Grails"/></a></li>
 				<g:if test="${session.user}">
 					<li><span>Login as ${session.user}</span> <g:link controller="User" action="logOut">(Logout)</g:link></li>
-				</g:if>		
+				</g:if>
 			</ul>
 		</div>
 		<div id="time">

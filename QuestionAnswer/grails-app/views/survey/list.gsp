@@ -7,12 +7,6 @@
     </head>
 	<body>
 		<h1>Administration surveys</h1>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="['Survey']" /></g:link></li>
-				<li><g:link class="create" controller="Question" action="create"><g:message code="default.new.label" args="['Question']" /></g:link></li>
-			</ul>
-		</div>
 		<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -46,6 +40,13 @@
 				</g:each>
 			</tbody>
 		</table>
+		<br>
+		<fieldset class="buttons">
+			<div class="access_button">
+				<a class="access" href="${createLink(controller:'Survey', action:'create')}">Create Survey</a> 
+				<a class="access" href="${createLink(controller:'Question', action:'create')}">Create Question</a>
+			</div>
+		</fieldset>
 		<div class="pagination">
 			<g:paginate total="${surveyInstanceTotal}" />
 		</div>
