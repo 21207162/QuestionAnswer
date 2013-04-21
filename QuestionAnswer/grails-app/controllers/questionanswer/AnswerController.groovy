@@ -5,8 +5,6 @@ import org.springframework.dao.DataIntegrityViolationException
 class AnswerController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
-	AnswerService answerService
 	
     def index() {
         redirect(action: "list", params: params)
