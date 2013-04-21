@@ -11,7 +11,7 @@
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
 			<div class="nav" role="navigation">
 			<ul>
-				<li><g:link class="list" controler="Question" action="show" id="${questionInstance.id}">Show Question</g:link></li>
+				<li><g:link class="list" controller="Question" action="show" id="${questionInstance.id}">Show Question</g:link></li>
 			</ul>
 		</div>
 			<g:if test="${flash.message}">

@@ -37,11 +37,13 @@
 							<input class="access" type="submit" onclick="return confirm('Are you sure?');" value="Delete" name="_action_delete">
 						</g:if>
 						<g:if test="${ surveyInstance.open != Enum_state_survey.OVER }">
-							<a class="access" href="${createLink(controller:'Survey', action:'submit')}">Submit</a>
-							<a class="access" href="${createLink(controller:'Survey', action:'close')}">Close</a>
+							<g:if test="${ surveyInstance.open != Enum_state_survey.OPENED }">
+								<a class="access" href="${createLink(controller:'Survey', action:'submit', id:surveyInstance?.id)}">Submit</a>
+							</g:if>
+							<a class="access" href="${createLink(controller:'Survey', action:'close', id:surveyInstance?.id)}">Close</a>
 						</g:if>
 						<g:else>
-							<a class="access" href="${createLink(controller:'Survey', action:'close')}">Go to results</a>
+							<a class="access" href="${createLink(controller:'Survey', action:'close', id:surveyInstance?.id)}">Go to results</a>
 						</g:else>
 					</div>
 				</fieldset>
