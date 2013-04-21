@@ -56,7 +56,8 @@
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${questionInstance?.id}" />
 					<div class="access_button">
-						<a class="access" href="${createLink(controller:'Question', action:'edit', id:questionInstance?.id)}" >Edit</a>
+						<a class="access" href="${createLink(controller:'Answer', action:'create', id:questionInstance.id)}" >Add other answers</a>
+						<a class="access" href="${createLink(controller:'Question', action:'edit', id:questionInstance.id)}" >Edit</a>
 						<input class="access" type="submit" onclick="return confirm('Are you sure?');" value="Delete" name="_action_delete">
 					</div>
 				</fieldset>

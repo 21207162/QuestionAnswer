@@ -9,11 +9,7 @@
 	<body>
 		<div id="create-answer" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="list" controller="Question" action="show" id="${questionInstance.id}">Show Question</g:link></li>
-			</ul>
-		</div>
+			<a href="${createLink(controller:'Question', action:'show', id:questionInstance.id)}" ><< Go to question details</a>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
