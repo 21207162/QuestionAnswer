@@ -22,11 +22,43 @@ class SurveyService {
 	}
 	
 	def CalculateStatistics(Survey s){
-		int nbAnswers = s.getAnswers().size();
-		List<Double> percentagePerAnswer = new ArrayList<Double>()
-		for(Answer a : s.getAnswers()) {
-			percentagePerAnswer.add((a.getCounter()/nbAnswers)*100)
+		def slurper = new JsonSlurper()
+		def map = slurper.parseText(s.getMapJson())
+		def bufferList = []
+		def percentagePerAnswer = []
+		/*map.entrySet().each {
+			nbVotes += it.value
+		}*/
+		map.entrySet().each {
+			def answer = Answer.get(Integer.parseInt(it.key))
+			percentagePerAnswer.add(answer.getAnswer())
+			percentagePerAnswer.add(it.value)
+			//percentagePerAnswer.add((it.value / nbVotes)*100)
 		}
+		percentagePerAnswer = percentagePerAnswer.collate(2)
+		
+		return percentagePerAnswer;
+	}
+	
+	def CalculateStatisticsGlobal(Survey s){
+		def slurper = new JsonSlurper()
+		def map = slurper.parseText(s.getMapJson())
+		def nbVotesRight = 0
+		def nbVotesWrong = 0
+		def bufferList = []
+		def percentagePerAnswer = []
+		map.entrySet().each {
+			def answer = Answer.get(Integer.parseInt(it.key))
+			if(answer.isRight())
+				nbVotesRight += it.value
+			else
+				nbVotesWrong += it.value
+		}
+		percentagePerAnswer.add("Nb right answers")
+		percentagePerAnswer.add(nbVotesRight)
+		percentagePerAnswer.add("Nb wrong answers")
+		percentagePerAnswer.add(nbVotesWrong)
+		percentagePerAnswer = percentagePerAnswer.collate(2)
 		
 		return percentagePerAnswer;
 	}

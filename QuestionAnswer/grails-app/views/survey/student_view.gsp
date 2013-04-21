@@ -1,5 +1,6 @@
 
 <%@ page import="questionanswer.Survey" %>
+<%@ page import="questionanswer.Enum_state_survey" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,7 +25,7 @@
 				</thead>
 				<tbody>
 				<g:each in="${surveyInstanceList}" status="i" var="surveyInstance">
-					<g:if test="${fieldValue(bean: surveyInstance, field: "open") == 'true'}">
+					<g:if test="${surveyInstance.open == Enum_state_survey.OPENED}">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 							<td><g:link controller="question" action="show_q_student" params="[survey: surveyInstance.id]" id="${surveyInstance.question.id}">${fieldValue(bean: surveyInstance, field: "question")}</g:link></td>
 						</tr>
