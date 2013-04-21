@@ -7,6 +7,7 @@
     </head>
 	<body>
 		<h1>Administration surveys</h1>
+		<a style="float:right" href="${createLink(controller:'Question', action:'list')}" >Go to question list >></a><br>
 		<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

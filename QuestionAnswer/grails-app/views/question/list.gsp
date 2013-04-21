@@ -10,7 +10,8 @@
 	<body>
 		<div id="list-question" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-		</div>
+			<a href="${createLink(controller:'Survey', action:'list')}" ><< Back to survey list</a>
+			
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -47,6 +48,7 @@
 			</fieldset>
 			<div class="pagination">
 				<g:paginate total="${questionInstanceTotal}" />
+			</div>
 			</div>
 	</body>
 </html>

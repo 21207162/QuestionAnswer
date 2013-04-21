@@ -22,7 +22,7 @@
                                 <h1><a href="http://localhost:8080/QuestionAnswer"><img src="${resource(dir: 'images', file: 'logoQA.png')}" alt="Grails"/></a></h1>
 
                                 <div class="access_button"> 
-									<a class="access" href="${createLink(controller:'Survey', action:'index')}">Acces to application</a>
+									<a class="access" href="${createLink(controller:'Survey', action:'index')}">Access to application</a>
 								</div>
 								<g:if test="${session.user}">
 									<div align=center style="margin-bottom:10px;">Login as ${session.user} <g:link controller="User" action="logOut">(Logout)</g:link></div>
