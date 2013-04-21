@@ -15,21 +15,21 @@ class UserController {
 	def logIn(){
 		def u = User.findByNameAndPassword(params.name, params.password)
 		if (u){
-		def hisProfile = u.getProfile()
-		if (hisProfile.status.equals(Enum_profile.TEACHER)){
-		flash.message = "Hello "+ u.toString()
-		session.user = u.name
-		redirect(controller:"Survey", action: "list")
+			def hisProfile = u.getProfile()
+			if (hisProfile.status.equals(Enum_profile.TEACHER)){
+				flash.message = "Hello "+ u.toString()
+				session.user = u.name
+				redirect(controller:"Survey", action: "list")
+			}else{
+				flash.message = "Hello "+ u.toString()
+				session.user = u.name
+				redirect(controller:"Survey", action: "student_view")
+			}
 		}else{
-		flash.message = "Hello "+ u.toString()
-		session.user = u.name
-		redirect(controller:"Survey", action: "student_view")
+			flash.message = "Error during authentification, please try again"
+			redirect(controller:"Survey", action:"index")
 		}
-		}else{
-		flash.message = "Error during authentification, please try again"
-		redirect(controller:"Survey", action:"index")
-		}
-		}
+	}
 	
 	def logOut(){
 		session.user=null
@@ -46,6 +46,9 @@ class UserController {
     }
 
     def save() {
+		if (session.user != null){
+			session.user = null
+		}
 		if (params.passwordsignup == params.passwordsignup_confirm){
 			def profile = Profile.findByStatus(Enum_profile.STUDENT)
 			def userInstance = new User(forename:params.forenamesignup, name:params.namesignup, password:params.passwordsignup, profile:profile)
@@ -54,6 +57,7 @@ class UserController {
 				return
 			}
 			flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
+			session.user = userInstance.name
 			redirect(controller:"Survey", action: "index", id: userInstance.id)
 		}else{
 			flash.message = "Error during signin, check your password"
