@@ -56,6 +56,14 @@ class UserController {
 				render(view: "create", model: [userInstance: userInstance])
 				return
 			}
+			//TODO Ajouté student aux UsersSurveys
+			def userSurvey = UserSurvey.executeQuery("SELECT survey FROM UserSurvey GROUP BY SURVEY_ID")
+			userSurvey.each {
+				String tid = it.toString().find(/[0-9]+/)
+				def survey = Survey.get(tid)
+				UserSurvey.create(userInstance, survey, false)
+			}
+			//
 			flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
 			session.user = userInstance.name
 			redirect(controller:"Survey", action: "index", id: userInstance.id)
