@@ -31,10 +31,10 @@ class BootStrap {
 				println "An error occured with adam"}
 		}
 		
-		User s1 = new User(forename:"Axel", name:"Robert", password:"coucou", profile:student)
+		User t2 = new User(forename:"Frederic", name:"Migeon", password:"coucou", profile:teacher)
 		
-		if(!s1.save()) {
-			s1.errors.allErrors.each{error ->
+		if(!t2.save()) {
+			t2.errors.allErrors.each{error ->
 				println "An error occured with adam"}
 		}
 		
